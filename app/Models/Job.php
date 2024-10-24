@@ -27,12 +27,14 @@ class Job
         ];
     }
 
-    public static function find(int $id)
+    public static function find(int $id): array
     {
         $job = Arr::first(Job::all(), fn($job) => $job['id'] == $id);
 
-        if (! $job) {   //incase page doesn't exist since no product has that ID
+        if (!$job) {   //incase page doesn't exist since no product has that ID
             abort(404);
         }
+
+        return $job;
     }
 }
