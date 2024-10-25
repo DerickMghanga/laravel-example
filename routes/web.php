@@ -9,8 +9,10 @@ Route::get('/', function () {
 });
 
 Route::get('/jobs', function () {
+    $jobs = Job::with('employer')->get(); // reduce SQL queries and fetch employer data at a go by Eager loading
+
     return view('jobs', [
-        'jobs' => Job::all()
+        'jobs' => $jobs
     ]);
 });
 
